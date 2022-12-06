@@ -1,0 +1,12 @@
+
+<div class="grid-container">
+    <a href="property-detail/{{property._id}}" *ngFor="let property of properties" class="property-container">
+      <mat-card class="card">
+        <img mat-card-image src="{{property.images[0]}}" alt="Imagen del inmueble no pudo cargarse.">
+        <mat-card-content class="card-content">
+          <h1>{{property.title}}</h1>
+          <span class="price">${{property.price}}</span>
+        </mat-card-content>
+      </mat-card>
+    </a>
+  </div>
