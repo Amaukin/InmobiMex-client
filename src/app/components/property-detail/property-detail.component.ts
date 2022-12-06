@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PropertyService } from 'src/app/services/property.service';
 import { Property } from 'src/app/models/property';
+import { UserService } from 'src/app/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-property-detail',
@@ -13,12 +15,14 @@ export class PropertyDetailComponent implements OnInit {
 
   public imageIndex: number;
   public maxImageIndex: number;
+  public owner: User;
   public property: Property;
   private propertyId: string;
 
   constructor(
     private route: ActivatedRoute,
-    private propertyService: PropertyService
+    private propertyService: PropertyService,
+    private userService: UserService
   ) {
     this.imageIndex = 0;
     this.propertyId = String(this.route.snapshot.paramMap.get('id'));
@@ -53,7 +57,9 @@ export class PropertyDetailComponent implements OnInit {
     this.propertyService.getProperty(this.propertyId).subscribe(
       (property) => {
         this.maxImageIndex = property.images.length - 1;
-        this.property = property
+        this.property = property;
+        this.owner = this.property.owner;
+        this.owner.fullName = this.userService.getUserFullName(this.owner);
     });
   }
 

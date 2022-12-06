@@ -8,4 +8,30 @@
         <mat-icon>arrow_forward_ios</mat-icon>
       </button>
   </div>
+  <div class="information-container">
+    <h1>{{property.title}}</h1>
+    <span>{{property.description}}</span>
+    <div class="address-price">
+      <span>{{property.address}}</span>
+      <span>${{property.price}}</span>
+    </div>
+    <div class="rooms-container">
+      <div class="first-section">
+        <span><mat-icon>meeting_room</mat-icon>{{property.roomQuantity}}</span>
+        <span><mat-icon>bathtub</mat-icon>{{property.bathroomQuantity}}</span>
+      </div>
+      <div class="second-section">
+        <span><mat-icon>commute</mat-icon>{{property.garageQuantity}}</span>
+      </div>
+      <span>{{property.services}}</span>
+      <div class="owner-contact">
+        <h1>Contacto del arrendador</h1>
+        <div class="owner-details">
+          <h3>{{owner.fullName}}</h3>
+          <span>{{owner.phone}}</span>
+          <span>{{owner.email}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

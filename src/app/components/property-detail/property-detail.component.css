@@ -1,0 +1,8 @@
+.detail-container {
+ display: flex;
+}
+
+.owner-details {
+  display: flex;
+  flex-direction: column;
+}
