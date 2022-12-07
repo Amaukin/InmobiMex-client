@@ -1,25 +1,42 @@
+<div class="imageContainer">
+  <img src="https://scontent.fmex24-1.fna.fbcdn.net/v/t1.15752-9/316886949_372584678404436_4458665424066611448_n.png?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeH5lXaSzMt5t6lXlTu2tjdZUzBSeClUNvJTMFJ4KVQ28uw7YpD7A1NqrvColBNRbLjNb2DVUwmIV79CbO8V625c&_nc_ohc=Wgt0kdcrxQsAX-4PBT7&_nc_ht=scontent.fmex24-1.fna&oh=03_AdSmpN9Mfxocp0Ewh9QS09149M-wBqqBhgGmehEmvvQN6Q&oe=63B85D01" alt="">
+</div>
+
 <form class="formulario" [formGroup]="propertyForm">
-  <mat-form-field>
-    <mat-label>Título</mat-label>
-    <input type="text" matInput [formControlName]="'title'" placeholder="Título">
-    <mat-error *ngIf="propertyForm.get('title')!.hasError('required')">
-      El título es requerido
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Precio</mat-label>
-    <input type="text" matInput [formControlName]="'price'" placeholder="Precio">
-    <mat-error *ngIf="propertyForm.get('price')!.hasError('required')">
-      El precio es requerido
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Descripción</mat-label>
-    <input type="text" matInput [formControlName]="'description'" placeholder="Descripción">
-    <mat-error *ngIf="propertyForm.get('description')!.hasError('required')">
-      La descripción es requerida
-    </mat-error>
-  </mat-form-field>
+  <div class="firstRow">
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input type="text" matInput [formControlName]="'title'" placeholder="Título" class="inputTitle">
+      <mat-error *ngIf="propertyForm.get('title')!.hasError('required')">
+        El título es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Precio</mat-label>
+      <input type="text" matInput [formControlName]="'price'" placeholder="Precio" class="inputPrice">
+      <mat-error *ngIf="propertyForm.get('price')!.hasError('required')">
+        El precio es requerido
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="secondRow">
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <input type="text" matInput [formControlName]="'description'" placeholder="Descripción">
+      <mat-error *ngIf="propertyForm.get('description')!.hasError('required')">
+        La descripción es requerida
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="thirdRow">
+    <mat-form-field>
+      <mat-label>Dirección</mat-label>
+      <input type="text" matInput [formControlName]="'address'" placeholder="Dirección">
+      <mat-error *ngIf="propertyForm.get('description')!.hasError('required')">
+        La dirección es requerida
+      </mat-error>
+    </mat-form-field>
+  </div>
   <div class="images" [formArrayName]="'reparto'">
     <div class="reparto" *ngFor="let imag of images().controls; let i=index" [formGroupName]="i">
       <mat-form-field>

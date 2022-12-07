@@ -1,0 +1,35 @@
+input {
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: -webkit-fill-available;
+}
+
+.imageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.firstRow {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+}
+
+.secondRow {
+    width: 100%;
+
+}
+
+.secondRow .mat-form-field,
+.thirdRow .mat-form-field{
+    display: block;
+}

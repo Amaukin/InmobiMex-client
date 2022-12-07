@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PropertyDetailModule } from './components/property-detail/property-detail.module';
 import { PropertyModule } from './components/property/property.module';
+import { AddPropertyModule } from './components/add-property/add-property.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PropertyModule } from './components/property/property.module';
     MatMenuModule,
     MatToolbarModule,
     PropertyDetailModule,
-    PropertyModule
+    PropertyModule,
+    AddPropertyModule
   ],
   providers: [],
   bootstrap: [AppComponent]
