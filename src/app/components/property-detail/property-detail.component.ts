@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PropertyService } from 'src/app/services/property.service';
 import { Property } from 'src/app/models/property';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -58,7 +58,7 @@ export class PropertyDetailComponent implements OnInit {
       (property) => {
         this.maxImageIndex = property.images.length - 1;
         this.property = property;
-        this.owner = this.property.owner;
+        this.owner = this.property.owner!;
         this.owner.fullName = this.userService.getUserFullName(this.owner);
     });
   }

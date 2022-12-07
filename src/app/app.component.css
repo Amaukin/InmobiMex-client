@@ -295,8 +295,14 @@ svg#clouds {
   color: #000;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.toolbar-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-property {
+  display: flex;
+  justify-content: center;
 }
 
 .user-icon {
