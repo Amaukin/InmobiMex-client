@@ -1,8 +1,110 @@
 .detail-container {
- display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90%;
+  margin: 40px auto 0;
+  height: calc(100vh - 104px);
+  gap: 40px;
 }
 
 .owner-details {
   display: flex;
   flex-direction: column;
+}
+
+.image-container {
+  width: 90%;
+  height: auto;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.nextImage {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.prevImage {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.information-container{
+  padding: 0px 40px;
+}
+
+.information-container .title {
+  font-size: 50px;
+}
+
+.description {
+  display: block;
+  font-size: 23px;
+}
+
+.address-price {
+  display: flex;
+  align-items: center;
+  width: 77%;
+}
+
+.address {
+  color: red;
+  display: inline-flex;
+  align-items: center;
+  margin: 30px 30px 30px 0;
+  font-size: 18px;
+}
+
+.address-price .price {
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: flex-start;
+  height: 100%;
+  margin-left: auto;
+}
+
+.first-section {
+  width: 77%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.mat-icon{
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
+.second-section {
+  width: 77%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.services {
+  font-size: 20px;
+}
+
+.services p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.owner-contact {
+  margin-top: 60px;
 }

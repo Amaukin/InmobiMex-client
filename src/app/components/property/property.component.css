@@ -1,6 +1,10 @@
 .grid-container {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  margin: 0 auto;
+  gap: 40px;
+  margin-top: 40px;
 }
 
 .grid-container a {
@@ -10,15 +14,18 @@
 
 .property-container {
   display: flex;
-  height: 60vh;
-  width: 20vw !important;
   border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
+  -webkit-box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
+  -moz-box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
 }
 
 .card {
   max-width: 400px;
   display: flex;
   flex-direction: column;
+
 }
 
 .card-content {
@@ -31,4 +38,12 @@
 .price {
   display: flex;
   justify-content: flex-end;
+  font-weight: bold;
+  color: green;
+  font-size: 20px;
+}
+
+.mat-card-image{
+  width: 100%;
+  margin: 0px auto !important;
 }

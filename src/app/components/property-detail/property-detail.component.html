@@ -1,19 +1,19 @@
 <div class="detail-container" *ngIf="property">
   <div class="image-container">
-      <button [disabled]="imageIndex === 0" (click)="nextImage()">
+      <button [disabled]="imageIndex === 0" (click)="nextImage()" class="nextImage">
         <mat-icon>arrow_back_ios</mat-icon>
       </button>
       <img src="{{property.images[imageIndex]}}" alt="">
-      <button [disabled]="imageIndex === maxImageIndex" (click)="previousImage()">
+      <button [disabled]="imageIndex === maxImageIndex" (click)="previousImage()" class="prevImage">
         <mat-icon>arrow_forward_ios</mat-icon>
       </button>
   </div>
   <div class="information-container">
-    <h1>{{property.title}}</h1>
-    <span>{{property.description}}</span>
+    <h1 class="title">{{property.title}}</h1>
+    <span class="description">{{property.description}}</span>
     <div class="address-price">
-      <span>{{property.address}}</span>
-      <span>${{property.price}}</span>
+      <span class="address"><mat-icon> pin_drop</mat-icon>{{property.address}}</span>
+      <span class="price">${{property.price}}</span>
     </div>
     <div class="rooms-container">
       <div class="first-section">
@@ -23,7 +23,10 @@
       <div class="second-section">
         <span><mat-icon>commute</mat-icon>{{property.garageQuantity}}</span>
       </div>
-      <span>{{property.services}}</span>
+      <div class="services">
+        <p>Servicios</p>
+        <span>{{property.services}}</span>
+      </div>
       <div class="owner-contact">
         <h1>Contacto del arrendador</h1>
         <div class="owner-details">
