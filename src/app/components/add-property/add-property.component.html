@@ -1,0 +1,75 @@
+<form class="formulario" [formGroup]="propertyForm">
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input type="text" matInput [formControlName]="'title'" placeholder="Título">
+    <mat-error *ngIf="propertyForm.get('title')!.hasError('required')">
+      El título es requerido
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input type="text" matInput [formControlName]="'price'" placeholder="Precio">
+    <mat-error *ngIf="propertyForm.get('price')!.hasError('required')">
+      El precio es requerido
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input type="text" matInput [formControlName]="'description'" placeholder="Descripción">
+    <mat-error *ngIf="propertyForm.get('description')!.hasError('required')">
+      La descripción es requerida
+    </mat-error>
+  </mat-form-field>
+  <div class="images" [formArrayName]="'reparto'">
+    <div class="reparto" *ngFor="let imag of images().controls; let i=index" [formGroupName]="i">
+      <mat-form-field>
+        <mat-label>Nombre del imag</mat-label>
+        <input type="text" matInput formControlName="imag">
+        <!-- <mat-error *ngIf="propertyForm.get('reparto')!.get('{{i}}')!.hasError('required')">
+          El nombre de imag es requerido
+        </mat-error> -->
+      </mat-form-field>
+      <button (click)="removeImage(i)" class="btn btn-danger">Quitar Actor</button>
+    </div>
+  </div>
+  <button class="add-filter-button" (click)="addImage()">
+    <mat-icon>add_icon</mat-icon>
+    <span>Agregar imag</span>
+  </button>
+  <mat-form-field>
+    <mat-label>Género</mat-label>
+    <input type="text" matInput [formControlName]="'genero'" placeholder="Género">
+    <mat-error *ngIf="propertyForm.get('genero')!.hasError('required')">
+      El género es requerido
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Puntuación</mat-label>
+    <input type="text" matInput [formControlName]="'puntuacion'" placeholder="Puntuación">
+    <mat-error *ngIf="propertyForm.get('puntuacion')!.hasError('required')">
+      La puntuación es requerida
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Duración</mat-label>
+    <input type="text" matInput [formControlName]="'duracion'" placeholder="Duración">
+    <mat-error *ngIf="propertyForm.get('duracion')!.hasError('required')">
+      La duración es requerida
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Director</mat-label>
+    <input type="text" matInput [formControlName]="'director'" placeholder="Director">
+    <mat-error *ngIf="propertyForm.get('director')!.hasError('required')">
+      El director es requerido
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>URL portada</mat-label>
+    <input type="text" matInput [formControlName]="'portada'" placeholder="Portada">
+    <mat-error *ngIf="propertyForm.get('portada')!.hasError('required')">
+      La portada es requerida
+    </mat-error>
+  </mat-form-field>
+</form>
+<button [disabled]="propertyForm.invalid" (click)="addProperty()">Agregar película</button>

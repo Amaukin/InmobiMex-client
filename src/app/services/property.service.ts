@@ -15,6 +15,10 @@ export class PropertyService {
     private http: HttpClient
   ) { }
 
+  public addProperty(property: Property): Observable<Property> {
+    return this.http.post<Property>(APP_DEFAULTS.API_URL + APP_DEFAULTS.PROPERTY_PATH, property)
+  }
+
   /**
    * @description Gets property list
    * @returns Property array list

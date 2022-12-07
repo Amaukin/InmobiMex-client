@@ -15,7 +15,7 @@ export class Property {
   public services:  string;
   public surface: string;
   public title: string;
-  public owner: User;
+  public owner?: User;
 
   constructor() {
   }
