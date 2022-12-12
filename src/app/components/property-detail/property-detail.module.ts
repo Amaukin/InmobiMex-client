@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material';
 import { PropertyDetailComponent } from './property-detail.component';
 
-
-
 @NgModule({
   declarations: [ PropertyDetailComponent ],
   imports: [

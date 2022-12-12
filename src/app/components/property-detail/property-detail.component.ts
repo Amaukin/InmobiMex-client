@@ -1,10 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { PropertyService } from 'src/app/services/property.service';
-import { Property } from 'src/app/models/property';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
+import { PropertyService } from '../../services/property.service';
+import { Property } from '../../models/property';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-property-detail',
@@ -21,6 +21,7 @@ export class PropertyDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private propertyService: PropertyService,
     private userService: UserService
   ) {
@@ -30,6 +31,27 @@ export class PropertyDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProperty();
+  }
+
+  /**
+   * @description Deletes property
+   */
+  public deleteProperty(): void {
+    this.propertyService.deleteProperty(this.propertyId).subscribe(
+      (_) => {
+        this.router.navigate(['/'])
+    }, (error) => {
+        console.log(error);
+        this.router.navigate(['/'])
+    });
+  }
+
+  /**
+   * @description Edits property
+   */
+  public editProperty(): void {
+    const propertyId = this.propertyId;
+    this.router.navigate(['/add-property'], { queryParams: { propertyId } });
   }
 
   /**

@@ -292,7 +292,7 @@ svg#clouds {
 }
 
 .app-title h1 {
-  color: #000;
+  color: #FAFAFA;
 }
 
 .toolbar-row {
@@ -303,6 +303,7 @@ svg#clouds {
 .add-property {
   display: flex;
   justify-content: center;
+  color: #FAFAFA !important;
 }
 
 .user-icon {

@@ -9,7 +9,24 @@
       </button>
   </div>
   <div class="information-container">
-    <h1 class="title">{{property.title}}</h1>
+    <div class="buttons">
+      <button class="edit-button" (click)="editProperty()">
+        <div class="button-content">
+          <mat-icon>edit</mat-icon>
+          <span> Editar inmueble</span>
+        </div>
+      </button>
+      <button class="delete-button" (click)="deleteProperty()">
+        <div class="button-content">
+          <mat-icon>close</mat-icon>
+          <span> Eliminar inmueble</span>
+        </div>
+      </button>
+    </div>
+    <div class="header">
+      <h1 class="title">{{property.title}}</h1>
+      <span class="lease-type">{{property.leaseType}}</span>
+    </div>
     <span class="description">{{property.description}}</span>
     <div class="address-price">
       <span class="address"><mat-icon> pin_drop</mat-icon>{{property.address}}</span>

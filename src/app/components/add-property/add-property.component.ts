@@ -1,6 +1,6 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { Property } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
@@ -15,38 +15,67 @@ export class AddPropertyComponent implements OnInit {
   public property: Property;
   public propertyForm: FormGroup;
 
+  private isEdit: boolean;
+  private propertyId: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private propertyService: PropertyService,
+    private route: ActivatedRoute,
     private router: Router,
-  ) { }
+  ) {
+    this.propertyId = String(this.route.snapshot.queryParams['propertyId']);
+    this.isEdit = this.propertyId !== 'undefined';
+  }
 
   ngOnInit(): void {
     this.initializeFormBuilder();
+    if (this.isEdit) {
+      this.getProperty();
+    }
   }
 
   public images(): FormArray {
     return this.propertyForm.get('images') as FormArray;
   }
 
+  /**
+   * @description Adds new image to images array
+   */
   public addImage(): void {
     this.images().push(this.newImage());
   }
 
+  /**
+   * @description Saves property and navigates to detail
+   */
   public addProperty(): void {
-    const property = this.mapearProperty();
-    this.propertyService.addProperty(property).subscribe(
-      (property) => {
-        const propertyId = property._id!.toString();
-        this.redirigirInfo(propertyId);
-      }
-    );
+    const property = this.mapProperty();
+    if (!this.isEdit) {
+      this.propertyService.addProperty(property).subscribe(
+        (property) => {
+          const propertyId = property._id!.toString();
+          this.navigateToDetail(propertyId);
+      });
+    } else {
+      this.propertyService.updateProperty(property, this.propertyId).subscribe(
+        (_) => {
+          this.navigateToDetail(this.propertyId);
+      });
+    }
   }
 
-  public removeImage(indice: number): void {
-    this.images().removeAt(indice);
+  /**
+   * @description Removes image item from array
+   * @param index Image array index
+   */
+  public removeImage(index: number): void {
+    this.images().removeAt(index);
   }
 
+  /**
+   * @description Initializes form for html
+   */
   private initializeFormBuilder(): void {
     this.propertyForm = new FormGroup({
       address: new FormControl(null, [Validators.required]),
@@ -54,8 +83,8 @@ export class AddPropertyComponent implements OnInit {
       description: new FormControl(null, [Validators.required]),
       garageQuantity: new FormControl(null, [Validators.required]),
       images: this.formBuilder.array([this.newImage()]),
-      isFurnished: new FormControl(null, [Validators.required]),
-      leaseType: new FormControl(null, [Validators.required]),
+      isFurnished: new FormControl(false, [Validators.required]),
+      leaseType: new FormControl('Renta', [Validators.required]),
       price: new FormControl(null, [Validators.required]),
       roomQuantity: new FormControl(null, [Validators.required]),
       services: new FormControl(null, [Validators.required]),
@@ -64,7 +93,22 @@ export class AddPropertyComponent implements OnInit {
     })
   }
 
-  private mapearProperty(): Property {
+  /**
+   * @description Gets property information for edition
+   */
+  private getProperty(): void {
+    this.propertyService.getProperty(this.propertyId).subscribe(
+      (property) => {
+        this.property = property;
+        this.patchPropertyForm();
+    });
+  }
+
+  /**
+   * @description Extracts values from form
+   * @returns Mapped property
+   */
+  private mapProperty(): Property {
     const address = this.propertyForm.get('address')!.value;
     const bathroomQuantity = this.propertyForm.get('bathroomQuantity')!.value;
     const description = this.propertyForm.get('description')!.value;
@@ -97,14 +141,52 @@ export class AddPropertyComponent implements OnInit {
     return property;
   }
 
-  private redirigirInfo(propertyId: string): void {
-    this.router.navigate(['http://localhost:4200/property-detail/' + propertyId]);
+  /**
+   * @description Navigates to property detail
+   * @param propertyId Property identifier
+   */
+  private navigateToDetail(propertyId: string): void {
+    this.router.navigate(['/property-detail/' + propertyId]);
   }
 
-  private newImage(): FormGroup {
+  /**
+   * @description Navigates to home page
+   */
+  public navigateToHome(): void {
+    this.router.navigate(['']);
+  }
+
+  /**
+   * @description Creates a new image form control
+   * @param image Image url
+   * @returns New image form control
+   */
+  private newImage(image?: string): FormGroup {
     return new FormGroup({
-      image: new FormControl(null, [Validators.required])
+      image: new FormControl(image ? image : null, [Validators.required])
     });
   }
 
+  /**
+   * @description Patches property values to property form
+   */
+  private patchPropertyForm(): void {
+    this.propertyForm.patchValue({
+      address: this.property.address,
+      bathroomQuantity: this.property.bathroomQuantity,
+      description: this.property.description,
+      garageQuantity: this.property.garageQuantity,
+      isFurnished: this.property.isFurnished,
+      leaseType: this.property.leaseType,
+      price: this.property.price,
+      roomQuantity: this.property.roomQuantity,
+      services: this.property.services,
+      surface: this.property.surface,
+      title : this.property.title
+    });
+    this.removeImage(0);
+    for (const image of this.property.images) {
+      this.images().push(this.newImage(image));
+    }
+  }
 }

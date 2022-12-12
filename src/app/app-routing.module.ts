@@ -7,6 +7,7 @@ import { PropertyComponent } from './components/property/property.component';
 
 const routes: Routes = [
   { path: '', component: PropertyComponent },
+  { path: 'add-property/:id', component: AddPropertyComponent },
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'properties', component: PropertyComponent },
   { path: 'property-detail/:id', component: PropertyDetailComponent}
