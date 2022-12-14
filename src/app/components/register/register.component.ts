@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
     if (!this.isEdit) {
       this.userService.addUser(user).subscribe(
         (response) => {
-          console.log(response);
           this.userService.setToken(response.token);
           this.navigateToHome();
       });
@@ -108,7 +107,7 @@ export class RegisterComponent implements OnInit {
    * @description Navigates to home page
    */
   public navigateToHome(): void {
-    this.router.navigate(['']);
+    this.router.navigateByUrl('/');
   }
 
   /**

@@ -19,6 +19,7 @@ export class AddPropertyComponent implements OnInit {
   public isLoggedIn: boolean;
 
   private currentUser: User;
+  private isAdmin: boolean;
   private isEdit: boolean;
   private propertyId: string;
 
@@ -108,6 +109,7 @@ export class AddPropertyComponent implements OnInit {
       this.userService.getCurrentUser().subscribe(
         (user) => {
           this.currentUser = user;
+          this.isAdmin = this.currentUser.isAdmin!;
       });
     }
   }
@@ -157,7 +159,7 @@ export class AddPropertyComponent implements OnInit {
       surface,
       title
     }
-    if (this.isLoggedIn) {
+    if (!this.isAdmin) {
       property.owner = this.currentUser;
     }
 

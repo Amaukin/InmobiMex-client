@@ -4,7 +4,7 @@
       <a href="/" class="app-title">
         <h1>InmobiMex</h1>
       </a>
-      <a href="/add-property" class="add-property"><mat-icon>add</mat-icon> Agregar inmueble</a>
+      <a href="/add-property" class="add-property" *ngIf="isLoggedIn"><mat-icon>add</mat-icon> Agregar inmueble</a>
 
       <div class="session-menu-container" *ngIf="isLoggedIn">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="user-icon">

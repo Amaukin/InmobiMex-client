@@ -31,6 +31,7 @@ export class UserService {
    * @description Terminates user session
    */
   public closeSession(): void {
+    console.log('cerrar sesion');
     this.cookies.delete('token');
   }
 
