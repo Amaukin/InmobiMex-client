@@ -14,6 +14,7 @@ import { User } from '../../models/user';
 export class PropertyDetailComponent implements OnInit {
 
   public imageIndex: number;
+  public isActionsAccess: boolean;
   public maxImageIndex: number;
   public owner: User;
   public property: Property;
@@ -26,6 +27,7 @@ export class PropertyDetailComponent implements OnInit {
     private userService: UserService
   ) {
     this.imageIndex = 0;
+    this.isActionsAccess = false;
     this.propertyId = String(this.route.snapshot.paramMap.get('id'));
    }
 
@@ -73,6 +75,19 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   /**
+   * @description Gets current user
+   */
+  private getCurrentUser(): void {
+    const isLoggedIn = this.userService.validateUserIsLoggedIn();
+    if (isLoggedIn) {
+      this.userService.getCurrentUser().subscribe(
+        (user) => {
+          this.isActionsAccess = user._id === this.owner._id || user.isAdmin!;
+      }, error => console.log(error));
+    }
+  }
+
+  /**
    * @description Gets property data
    */
   private getProperty(): void {
@@ -82,6 +97,7 @@ export class PropertyDetailComponent implements OnInit {
         this.property = property;
         this.owner = this.property.owner!;
         this.owner.fullName = this.userService.getUserFullName(this.owner);
+        this.getCurrentUser();
     });
   }
 

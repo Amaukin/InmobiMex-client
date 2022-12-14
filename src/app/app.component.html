@@ -1,13 +1,32 @@
-<p class="header"> 
+<p class="header">
   <mat-toolbar color="primary">
     <mat-toolbar-row class="toolbar-row">
       <a href="/" class="app-title">
         <h1>InmobiMex</h1>
       </a>
       <a href="/add-property" class="add-property"><mat-icon>add</mat-icon> Agregar inmueble</a>
-      <button mat-icon-button class="user-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>person</mat-icon>
-      </button>
+
+      <div class="session-menu-container" *ngIf="isLoggedIn">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="user-icon">
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button class="user-full-name" disabled mat-menu-item *ngIf="currentUser">{{currentUser.fullName}}</button>
+          <button mat-menu-item (click)="navigateToUserAdministration()" *ngIf="isAdmin">
+            <mat-icon>people</mat-icon>
+            <span>Administración de usuarios</span>
+          </button>
+          <button mat-menu-item (click)="closeSession()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+
+      <div class="session-menu-container" *ngIf="!isLoggedIn">
+        <a href="/register">Registrarse</a>
+        <a href="/login">Iniciar sesión</a>
+      </div>
     </mat-toolbar-row>
   </mat-toolbar>
 </p>

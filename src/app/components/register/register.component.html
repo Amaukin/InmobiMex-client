@@ -1,0 +1,59 @@
+<div class="imageContainer">
+  <img src="https://scontent.fmex24-1.fna.fbcdn.net/v/t1.15752-9/316886949_372584678404436_4458665424066611448_n.png?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeH5lXaSzMt5t6lXlTu2tjdZUzBSeClUNvJTMFJ4KVQ28uw7YpD7A1NqrvColBNRbLjNb2DVUwmIV79CbO8V625c&_nc_ohc=Wgt0kdcrxQsAX-4PBT7&_nc_ht=scontent.fmex24-1.fna&oh=03_AdSmpN9Mfxocp0Ewh9QS09149M-wBqqBhgGmehEmvvQN6Q&oe=63B85D01" alt="">
+</div>
+
+<form class="user-form" [formGroup]="userForm">
+  <div class="row first">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput [formControlName]="'name'">
+      <mat-error *ngIf="userForm.get('name')!.hasError('required')">
+        El nombre es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Segundo nombre</mat-label>
+      <input type="text" matInput [formControlName]="'secondName'">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido paterno</mat-label>
+      <input type="text" matInput [formControlName]="'surname'">
+      <mat-error *ngIf="userForm.get('surname')!.hasError('required')">
+        El apellido paterno es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido materno</mat-label>
+      <input type="text" matInput [formControlName]="'secondSurname'">
+    </mat-form-field>
+  </div>
+  <div class="row description">
+    <mat-form-field class="large-field">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput [formControlName]="'email'">
+      <mat-error *ngIf="userForm.get('email')!.hasError('required')">
+        El email es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="large-field">
+      <mat-label>Teléfono</mat-label>
+      <input type="text" matInput [formControlName]="'phone'">
+      <mat-error *ngIf="userForm.get('phone')!.hasError('required')">
+        El teléfono es requerido
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="large-field">
+      <mat-label>Contraseña</mat-label>
+      <input type="password" matInput [formControlName]="'password'">
+      <mat-error *ngIf="userForm.get('password')!.hasError('required')">
+        La contraseña es requerida
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>
+<div class="form-actions">
+  <button class="cancel-button" (click)="navigateToHome()">Cancelar</button>
+  <button class="add-user-button" [disabled]="userForm.invalid" (click)="addUser()">Registrarse</button>
+</div>

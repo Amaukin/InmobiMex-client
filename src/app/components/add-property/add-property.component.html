@@ -1,8 +1,9 @@
 <div class="imageContainer">
   <img src="https://scontent.fmex24-1.fna.fbcdn.net/v/t1.15752-9/316886949_372584678404436_4458665424066611448_n.png?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeH5lXaSzMt5t6lXlTu2tjdZUzBSeClUNvJTMFJ4KVQ28uw7YpD7A1NqrvColBNRbLjNb2DVUwmIV79CbO8V625c&_nc_ohc=Wgt0kdcrxQsAX-4PBT7&_nc_ht=scontent.fmex24-1.fna&oh=03_AdSmpN9Mfxocp0Ewh9QS09149M-wBqqBhgGmehEmvvQN6Q&oe=63B85D01" alt="">
 </div>
+<h1 *ngIf="!isLoggedIn">Debes iniciar sesión</h1>
 
-<form class="property-form" [formGroup]="propertyForm">
+<form class="property-form" [formGroup]="propertyForm" *ngIf="isLoggedIn">
   <div class="row first">
     <mat-form-field>
       <mat-label>Título</mat-label>
@@ -47,7 +48,7 @@
     <mat-form-field>
       <mat-label># Baños</mat-label>
       <input type="number" matInput [formControlName]="'bathroomQuantity'">
-      <mat-error *ngIf="propertyForm.get('description')!.hasError('required')">
+      <mat-error *ngIf="propertyForm.get('bathroomQuantity')!.hasError('required')">
         La cantidad de baños es requerida
       </mat-error>
     </mat-form-field>
@@ -98,7 +99,7 @@
     </div>
   </div>
 </form>
-<div class="form-actions">
+<div class="form-actions" *ngIf="isLoggedIn">
   <button class="cancel-button" (click)="navigateToHome()">Cancelar</button>
   <button class="add-property-button" [disabled]="propertyForm.invalid" (click)="addProperty()">Agregar inmueble</button>
 </div>

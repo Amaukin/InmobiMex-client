@@ -308,9 +308,27 @@ svg#clouds {
 
 .user-icon {
   border-radius: 50%;
+  cursor: pointer;
 }
 
 
 .header {
   background-color: #203E5F;
+}
+
+.user-full-name {
+  opacity: 1;
+  background-color: rgb(239, 239,239);
+  color: rgb(16, 16 ,16);
+}
+
+.session-menu-container a {
+  color: #FAFAFA;
+  margin-left: 12px;
+}
+
+::ng-deep .mat-menu-content:not(:empty) {
+  position: absolute;
+  top: 6vh;
+  right: 1vw;
 }

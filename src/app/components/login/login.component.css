@@ -1,0 +1,110 @@
+.imageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20vw;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6vh;
+}
+
+.lease-type {
+    display: flex;
+    flex-grow: 1;
+}
+
+.lease-type-options {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.image-container {
+    margin-bottom: 36px;
+}
+
+.remove-image-button, .add-image-button {
+    background-color: #EEC550;
+    border-color: #D0AD47;
+    margin-left: 12px;
+    padding: 6px;
+}
+
+.add-image-button {
+    margin-left: 0px;
+}
+
+.form-actions {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.cancel-button, .add-user-button {
+    padding: 12px;
+    color: #FAFAFA;
+    width: 8vw;
+    margin: 6px 24px;
+}
+
+.cancel-button, .add-user-button {
+    background-color: #1A2634;
+    border-color: #101821;
+}
+
+.add-user-button {
+    background-color: #203E5F;
+    border-color: #182e46;
+}
+
+.add-user-button:disabled {
+    background-color: #3d4c5c;
+    border-color: #29333e;
+}
+
+
+::ng-deep .mat-form-field {
+    border: 1px solid #EEC550;
+    background-color: #F9E3A31A;
+    width: 13vw;
+    padding: 6px;
+}
+
+::ng-deep .large-field {
+    width: 23vw !important;
+}
+
+.fourth ::ng-deep .mat-form-field {
+    width: 16vw !important;
+}
+
+::ng-deep .mat-form-field-label {
+    position: relative !important;
+    bottom: 32px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+    overflow: unset !important;
+}
+
+::ng-deep .mat-form-field-subscript-wrapper {
+    margin-top: 6px;
+    color: #B20600;
+}
+
+::ng-deep .mat-radio-outer-circle,::ng-deep .mat-checkbox-frame  {
+    visibility: hidden;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-checkmark {
+    visibility: hidden;
+}

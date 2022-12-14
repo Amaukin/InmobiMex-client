@@ -4,6 +4,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 
 import { Property } from '../../models/property';
 import { PropertyService } from '../../services/property.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-add-property',
@@ -14,7 +16,9 @@ export class AddPropertyComponent implements OnInit {
 
   public property: Property;
   public propertyForm: FormGroup;
+  public isLoggedIn: boolean;
 
+  private currentUser: User;
   private isEdit: boolean;
   private propertyId: string;
 
@@ -23,6 +27,7 @@ export class AddPropertyComponent implements OnInit {
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private router: Router,
+    private userService: UserService
   ) {
     this.propertyId = String(this.route.snapshot.queryParams['propertyId']);
     this.isEdit = this.propertyId !== 'undefined';
@@ -33,6 +38,8 @@ export class AddPropertyComponent implements OnInit {
     if (this.isEdit) {
       this.getProperty();
     }
+    this.validateUserIsLoggedIn();
+    this.getCurrentUser();
   }
 
   public images(): FormArray {
@@ -94,6 +101,18 @@ export class AddPropertyComponent implements OnInit {
   }
 
   /**
+   * @description Gets current user
+   */
+  private getCurrentUser(): void {
+    if (this.isLoggedIn) {
+      this.userService.getCurrentUser().subscribe(
+        (user) => {
+          this.currentUser = user;
+      });
+    }
+  }
+
+  /**
    * @description Gets property information for edition
    */
   private getProperty(): void {
@@ -138,6 +157,10 @@ export class AddPropertyComponent implements OnInit {
       surface,
       title
     }
+    if (this.isLoggedIn) {
+      property.owner = this.currentUser;
+    }
+
     return property;
   }
 
@@ -188,5 +211,12 @@ export class AddPropertyComponent implements OnInit {
     for (const image of this.property.images) {
       this.images().push(this.newImage(image));
     }
+  }
+
+  /**
+   * @description Validates if user is logged in
+   */
+  private validateUserIsLoggedIn(): void {
+    this.isLoggedIn = this.userService.validateUserIsLoggedIn();
   }
 }

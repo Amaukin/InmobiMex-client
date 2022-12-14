@@ -10,8 +10,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AddPropertyModule } from './components/add-property/add-property.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LogInModule } from './components/login/login.module';
+import { RegisterModule } from './components/register/register.module';
 import { PropertyDetailModule } from './components/property-detail/property-detail.module';
 import { PropertyModule } from './components/property/property.module';
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
@@ -23,12 +26,15 @@ import { PropertyModule } from './components/property/property.module';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
+    LogInModule,
     MatIconModule,
     MatInputModule,
     MatMenuModule,
     MatToolbarModule,
     PropertyDetailModule,
     PropertyModule,
+    RegisterModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

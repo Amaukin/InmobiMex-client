@@ -1,0 +1,57 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  margin: 0 auto;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.grid-container a {
+  color: #000;
+  text-decoration: none;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
+  -webkit-box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
+  -moz-box-shadow: 5px 7px 5px 0px rgba(0,0,0,0.41);
+}
+
+.card {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.mat-card-image{
+  width: 100%;
+  margin: 0px auto !important;
+}
+
+.button-container {
+  display: flex;
+  align-self: flex-end;
+}
+
+.delete-user-button {
+  padding: 12px;
+  color: #FAFAFA;
+  width: 8vw;
+  margin-right: 12px;
+  margin-bottom:12px;
+  background-color: #B20600;
+  border-color: #8d0500;
+}

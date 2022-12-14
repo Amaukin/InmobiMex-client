@@ -9,7 +9,7 @@
       </button>
   </div>
   <div class="information-container">
-    <div class="buttons">
+    <div class="buttons" *ngIf="isActionsAccess">
       <button class="edit-button" (click)="editProperty()">
         <div class="button-content">
           <mat-icon>edit</mat-icon>

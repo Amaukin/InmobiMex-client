@@ -1,0 +1,12 @@
+
+<div class="grid-container">
+    <mat-card class="card" *ngFor="let user of users" class="user-container">
+      <img mat-card-image src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="Imagen del usuario no pudo cargarse.">
+      <mat-card-content class="card-content">
+        <h1>{{user.fullName}}</h1>
+      </mat-card-content>
+      <mat-card-footer class="button-container">
+        <button class="delete-user-button" (click)="deleteUser(user)">Eliminar</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
